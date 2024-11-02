@@ -19,6 +19,9 @@ function App() {
 
   const { good, neutral, bad } = feedbackItem;
   const totalFeedback = good + neutral + bad;
+  const positiveFeedback = Math.round(
+    (feedbackItem.good / totalFeedback) * 100
+  );
 
   const updateFeedback = feedbackType => {
     setFeedbackItem(prev => ({
@@ -50,7 +53,11 @@ function App() {
       />
 
       {totalFeedback ? (
-        <Feedback totalFeedback={totalFeedback} feedbackItem={feedbackItem} />
+        <Feedback
+          positiveFeedback={positiveFeedback}
+          totalFeedback={totalFeedback}
+          feedbackItem={feedbackItem}
+        />
       ) : (
         <Notification />
       )}
